@@ -1,12 +1,19 @@
 import express from "express";
 import authRoutes from "./routes/auth.routes.js";
 import { protect } from "./middlewares/auth.middleware.js";
+import customerRoutes from "./routes/customer.routes.js";
+import creditBillRoutes from "./routes/creditBill.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
+
+
 
 const app = express();
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);
-
+app.use("/api/customers", customerRoutes);
+app.use("/api/credit-bills", creditBillRoutes);
+app.use("/api/payments", paymentRoutes);
 app.get("/", (req, res) => {
   res.send("API Running");
 

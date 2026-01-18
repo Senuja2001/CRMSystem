@@ -18,7 +18,8 @@ const Login = () => {
         password
       });
 
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", res.data.token);
+      navigate("/", { replace: true });
       alert("Login successful");
     } catch (err) {
       setError("Invalid username or password");

@@ -12,6 +12,10 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src")
     }
-  }
+  },
+   server: {
+    port: 5173,        // ✅ Frontend port
+    strictPort: true,  // ❗ Fail if port is already in use
+  },
   
 });

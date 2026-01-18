@@ -6,9 +6,11 @@ import creditBillRoutes from "./routes/creditBill.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
 import chequeRoutes from "./routes/cheque.routes.js";
 import reportRoutes from "./routes/report.routes.js";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/customers", customerRoutes);

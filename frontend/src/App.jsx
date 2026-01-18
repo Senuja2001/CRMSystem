@@ -1,19 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
 
+import "./App.css";
+
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public route */}
         <Route path="/login" element={<Login />} />
 
+        {/* Protected routes */}
         <Route
           path="/"
           element={

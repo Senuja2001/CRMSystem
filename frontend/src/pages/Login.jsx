@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import axios from "axios";
+
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -13,15 +18,20 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const { data } = await api.post("/auth/login", {
+      const response = await api.post("/auth/login", {
         username,
-        password
+        password,
       });
 
-      localStorage.setItem("token", res.data.token);
-      navigate("/", { replace: true });
-      alert("Login successful");
+      const { token } = response.data;
+
+      // save token
+      localStorage.setItem("token", token);
+
+      // go to dashboard
+      navigate("/");
     } catch (err) {
+      console.error(err);
       setError("Invalid username or password");
     } finally {
       setLoading(false);
@@ -30,20 +40,23 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-950">
-      <div className="w-full max-w-md bg-slate-900 p-8 rounded-xl">
-        <h1 className="text-2xl text-white text-center mb-6">Wijesinghe Distributors</h1>
+      <div className="w-full max-w-md bg-slate-900 p-8 rounded-xl shadow-lg">
+        <h1 className="text-2xl text-white text-center mb-6">
+          Wijesinghe Distributors
+        </h1>
 
         {error && (
-          <div className="bg-red-500/10 text-red-400 p-3 rounded mb-4 text-sm">
+          <div className="bg-red-500/10 text-red-400 p-3 rounded mb-4 text-sm text-center">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="text-slate-300">Username</label>
+            <label className="text-slate-300 text-sm">Username</label>
             <input
-              className="w-full mt-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded text-white"
+              type="text"
+              className="w-full mt-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded text-white outline-none focus:border-blue-500"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -51,10 +64,10 @@ const Login = () => {
           </div>
 
           <div>
-            <label className="text-slate-300">Password</label>
+            <label className="text-slate-300 text-sm">Password</label>
             <input
               type="password"
-              className="w-full mt-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded text-white"
+              className="w-full mt-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded text-white outline-none focus:border-blue-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -64,7 +77,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded"
+            className="w-full bg-blue-600 hover:bg-blue-700 transition text-white py-2 rounded font-medium disabled:opacity-60"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>

@@ -2,6 +2,7 @@ import React from "react";
 // 👇 ADD THIS LINE to fix the "NavLink is not defined" error
 import { NavLink, Outlet } from "react-router-dom"; 
 
+
 const Dashboard = () => {
   return (
     <div className="space-y-6">
@@ -63,20 +64,7 @@ const Dashboard = () => {
 
       </div>
 
-      {/* Internal Layout Section */}
-      <div className="min-h-screen flex bg-slate-950 text-slate-100">
-        <aside className="w-64 bg-slate-900 border-r border-slate-800 p-4 space-y-2">
-          <NavLink to="/" className="block hover:text-white">Dashboard</NavLink>
-          <NavLink to="/customers" className="block hover:text-white">Customers</NavLink>
-          <NavLink to="/credit-bills" className="block hover:text-white">Credit Bills</NavLink>
-          <NavLink to="/payments" className="block hover:text-white">Payments</NavLink>
-          <NavLink to="/reports" className="block hover:text-white">Reports</NavLink>
-        </aside>
-
-        <main className="flex-1 p-6">
-          <Outlet />
-        </main>
-      </div>
+      
     </div>
   );
 };

@@ -31,3 +31,18 @@ export const getPendingCheques = async (filters) => {
     ...(filters.chequeDate && { chequeDate: filters.chequeDate })
   }).populate("payment");
 };
+
+export const getMonthlySummary = async () => {
+  return [
+    { month: "Jan", cash: 120000, cheque: 80000 },
+    { month: "Feb", cash: 90000, cheque: 60000 },
+  ];
+};
+
+export const getYearlySummary = async () => {
+  return [
+    { name: "Cash", value: 550000 },
+    { name: "Cheque", value: 420000 },
+  ];
+};
+

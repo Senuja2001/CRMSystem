@@ -25,6 +25,9 @@ const DashboardLayout = () => {
           <NavLink to="/reports" className="block text-slate-400 hover:text-white">
             Reports
           </NavLink>
+          <NavLink to="/customers" className="nav-item">
+            Customers
+          </NavLink>
         </nav>
       </aside>
 

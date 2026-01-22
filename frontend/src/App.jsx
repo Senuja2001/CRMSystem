@@ -24,8 +24,17 @@ const App = () => {
             </ProtectedRoute>
           }
         >
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          ></Route>
           <Route index element={<Dashboard />} />
         </Route>
+
       </Routes>
     </BrowserRouter>
   );
